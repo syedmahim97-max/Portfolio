@@ -31,18 +31,13 @@
     <section id="home" class="hero">
         <div class="container hero-content">
             <div class="hero-text">
-                <h1>Hi, I'm <span class="highlight">Syed Mahim</span><br>Web Developer</h1>
+                <h1>Hi, I'm <span class="highlight">Syed Mahim</span><br><span class="typewriter"></span></h1>
                 <p>I'm a passionate web developer with expertise in creating dynamic and responsive websites. I love turning complex problems into simple, beautiful designs.</p>
                 <a href="#projects" class="btn">View My Work</a>
             </div>
             <div class="hero-image">
                 <div class="profile-img">
-                    <img src="IMG_3961.jpg">
-                        <circle cx="50" cy="50" r="45" fill="#333" />
-                        <circle cx="38" cy="40" r="5" fill="#f0f0f0" />
-                        <circle cx="62" cy="40" r="5" fill="#f0f0f0" />
-                        <path d="M30,65 Q50,80 70,65" stroke="#f0f0f0" stroke-width="3" fill="none" />
-                    </svg>
+                    <img src="IMG_3961.jpg" alt="Syed Mahim">
                 </div>
             </div>
         </div>
@@ -364,12 +359,78 @@
         window.addEventListener('scroll', () => {
             const header = document.querySelector('header');
             if (window.scrollY > 100) {
-                header.style.backgroundColor = 'rgba(0, 0, 0, 0.95)';
-                header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.3)';
+                header.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
+                header.style.boxShadow = '0 5px 30px rgba(0, 255, 255, 0.1)';
+                header.style.backdropFilter = 'blur(10px)';
             } else {
-                header.style.backgroundColor = 'rgba(0, 0, 0, 0.9)';
+                header.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
                 header.style.boxShadow = 'none';
             }
+        });
+
+        // Typewriter Effect
+        const typewriterElement = document.querySelector('.typewriter');
+        const roles = ['Web Developer', 'Full Stack Developer', 'Data Science Enthusiast', 'Problem Solver'];
+        let roleIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        let typeSpeed = 100;
+
+        function typeWriter() {
+            const currentRole = roles[roleIndex];
+            
+            if (isDeleting) {
+                typewriterElement.textContent = currentRole.substring(0, charIndex - 1);
+                charIndex--;
+                typeSpeed = 50;
+            } else {
+                typewriterElement.textContent = currentRole.substring(0, charIndex + 1);
+                charIndex++;
+                typeSpeed = 100;
+            }
+
+            if (!isDeleting && charIndex === currentRole.length) {
+                typeSpeed = 2000;
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                roleIndex = (roleIndex + 1) % roles.length;
+                typeSpeed = 500;
+            }
+
+            setTimeout(typeWriter, typeSpeed);
+        }
+        typeWriter();
+
+        // Scroll Reveal Animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('reveal-visible');
+                    
+                    // Animate skill bars when visible
+                    if (entry.target.classList.contains('skill-category')) {
+                        const skillBars = entry.target.querySelectorAll('.skill-level');
+                        skillBars.forEach(bar => {
+                            const width = bar.style.width;
+                            bar.style.width = '0%';
+                            setTimeout(() => {
+                                bar.style.width = width;
+                            }, 300);
+                        });
+                    }
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.education-card, .skill-category, .project-card').forEach(el => {
+            el.classList.add('reveal');
+            observer.observe(el);
         });
     </script>
 </body>
