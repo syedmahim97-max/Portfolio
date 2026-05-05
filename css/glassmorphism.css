@@ -1,0 +1,48 @@
+/**
+ * Glassmorphism Design System
+ * Domain: UI/UX Component Styling
+ * Purpose: Applies modular glass effect to generic cards and buttons in the application.
+ */
+
+/* Glass Card Component */
+.education-card,
+.project-card,
+.skill-category {
+    background: rgba(255, 255, 255, 0.05) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3) !important;
+    border-radius: 16px !important;
+    z-index: 1;
+}
+
+/* Hover effects for glass cards to make them interactive */
+.education-card:hover,
+.project-card:hover,
+.skill-category:hover {
+    background: rgba(255, 255, 255, 0.08) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4) !important;
+    transform: translateY(-5px);
+    transition: all 0.3s ease;
+}
+
+/* Glass Button Component */
+.btn {
+    background: rgba(255, 255, 255, 0.1) !important;
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.2) !important;
+    border-radius: 8px !important;
+    transition: all 0.3s ease !important;
+    color: inherit; /* Inherits the original text color */
+}
+
+/* Hover effects for glass buttons */
+.btn:hover {
+    background: rgba(255, 255, 255, 0.2) !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.3) !important;
+}

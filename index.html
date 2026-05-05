@@ -4,7 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>My Portfolio</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="css/glassmorphism.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
@@ -143,6 +144,16 @@
                 <div class="skill-level" style="width: 80%"></div>
               </div>
             </div>
+
+            <div class="skill-item">
+              <div class="skill-name">
+                <span>Flutter</span>
+                <span>70%</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-level" style="width: 70%"></div>
+              </div>
+            </div>
           </div>
 
           <div class="skill-category">
@@ -258,7 +269,6 @@
                 <span class="tag">MySQL</span>
                 <span class="tag">JDBC</span>
               </div>
-              <a href="#" class="btn">View Details</a>
             </div>
           </div>
 
@@ -279,7 +289,6 @@
                 <span class="tag">Statistical Analysis</span>
                 <span class="tag">Regression</span>
               </div>
-              <a href="#" class="btn">View Details</a>
             </div>
           </div>
 
@@ -300,7 +309,6 @@
 
                 <span class="tag">NLP</span>
               </div>
-              <a href="#" class="btn">View Details</a>
             </div>
           </div>
 
@@ -324,6 +332,24 @@
               <a href="#" class="btn">View Details</a>
             </div>
           </div>
+
+          <div class="project-card">
+            <div class="project-img">
+              <i class="fas fa-bullseye"></i>
+            </div>
+            <div class="project-content">
+              <h3>Must Stay Focused</h3>
+              <p>
+                Anti Procrastination and focused productivity app to block distractions and maintain concentration. Includes a focus session timer, productivity tracking, and features a minimal cross-platform interface.
+              </p>
+              <div class="project-tags">
+                <span class="tag">Flutter</span>
+                <span class="tag">Dart</span>
+                <span class="tag">Cross Platform</span>
+              </div>
+              <a href="https://github.com/ulab-design-project/must-stay-focused" class="btn" target="_blank">View Details</a>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -340,10 +366,8 @@
             <p class="contact-email">syedmahim97@gmail.com</p>
           </div>
           <div class="social-links">
-            <a href="#"><i class="fab fa-github"></i></a>
+            <a href="https://github.com/syedmahim97-max" target="_blank"><i class="fab fa-github"></i></a>
             <a href="#"><i class="fab fa-linkedin"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-codepen"></i></a>
           </div>
         </div>
         <div class="copyright">
@@ -352,134 +376,6 @@
       </div>
     </footer>
 
-    <script>
-      // Mobile menu toggle
-      const mobileMenuBtn = document.querySelector(".mobile-menu-btn");
-      const navLinks = document.querySelector(".nav-links");
-
-      mobileMenuBtn.addEventListener("click", () => {
-        navLinks.classList.toggle("active");
-        mobileMenuBtn.querySelector("i").classList.toggle("fa-bars");
-        mobileMenuBtn.querySelector("i").classList.toggle("fa-times");
-      });
-
-      // Close mobile menu when clicking on a link
-      document.querySelectorAll(".nav-links a").forEach((link) => {
-        link.addEventListener("click", () => {
-          navLinks.classList.remove("active");
-          mobileMenuBtn.querySelector("i").classList.add("fa-bars");
-          mobileMenuBtn.querySelector("i").classList.remove("fa-times");
-        });
-      });
-
-      // Smooth scrolling for anchor links
-      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-        anchor.addEventListener("click", function (e) {
-          e.preventDefault();
-
-          const targetId = this.getAttribute("href");
-          if (targetId === "#") return;
-
-          const targetElement = document.querySelector(targetId);
-          if (targetElement) {
-            window.scrollTo({
-              top: targetElement.offsetTop - 80,
-              behavior: "smooth",
-            });
-          }
-        });
-      });
-
-      // Add scroll effect to header
-      window.addEventListener("scroll", () => {
-        const header = document.querySelector("header");
-        if (window.scrollY > 100) {
-          header.style.backgroundColor = "rgba(0, 0, 0, 0.8)";
-          header.style.boxShadow = "0 5px 30px rgba(0, 255, 255, 0.1)";
-          header.style.backdropFilter = "blur(10px)";
-        } else {
-          header.style.backgroundColor = "rgba(0, 0, 0, 0.7)";
-          header.style.boxShadow = "none";
-        }
-      });
-
-      // Typewriter Effect
-      const typewriterElement = document.querySelector(".typewriter");
-      const roles = [
-        "Web Developer",
-        "Full Stack Developer",
-        "Data Science Enthusiast",
-        "Problem Solver",
-      ];
-      let roleIndex = 0;
-      let charIndex = 0;
-      let isDeleting = false;
-      let typeSpeed = 100;
-
-      function typeWriter() {
-        const currentRole = roles[roleIndex];
-
-        if (isDeleting) {
-          typewriterElement.textContent = currentRole.substring(
-            0,
-            charIndex - 1,
-          );
-          charIndex--;
-          typeSpeed = 50;
-        } else {
-          typewriterElement.textContent = currentRole.substring(
-            0,
-            charIndex + 1,
-          );
-          charIndex++;
-          typeSpeed = 100;
-        }
-
-        if (!isDeleting && charIndex === currentRole.length) {
-          typeSpeed = 2000;
-          isDeleting = true;
-        } else if (isDeleting && charIndex === 0) {
-          isDeleting = false;
-          roleIndex = (roleIndex + 1) % roles.length;
-          typeSpeed = 500;
-        }
-
-        setTimeout(typeWriter, typeSpeed);
-      }
-      typeWriter();
-
-      // Scroll Reveal Animation
-      const observerOptions = {
-        threshold: 0.1,
-        rootMargin: "0px 0px -50px 0px",
-      };
-
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("reveal-visible");
-
-            // Animate skill bars when visible
-            if (entry.target.classList.contains("skill-category")) {
-              const skillBars = entry.target.querySelectorAll(".skill-level");
-              skillBars.forEach((bar) => {
-                const width = bar.style.width;
-                bar.style.width = "0%";
-                setTimeout(() => {
-                  bar.style.width = width;
-                }, 300);
-              });
-            }
-          }
-        });
-      }, observerOptions);
-
-      document
-        .querySelectorAll(".education-card, .skill-category, .project-card")
-        .forEach((el) => {
-          el.classList.add("reveal");
-          observer.observe(el);
-        });
-    </script>
+    <script src="js/main.js" defer></script>
   </body>
 </html>
