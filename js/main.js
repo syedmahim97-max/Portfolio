@@ -141,7 +141,7 @@ function initTypewriter() {
  * Handles scroll reveal animations using IntersectionObserver
  */
 function initScrollAnimations() {
-    const elementsToReveal = document.querySelectorAll(".education-card, .skill-category, .project-card");
+    const elementsToReveal = document.querySelectorAll(".reveal");
     if (!elementsToReveal.length) throw new Error("No elements found to animate");
 
     const observerOptions = {
@@ -149,20 +149,21 @@ function initScrollAnimations() {
         rootMargin: "0px 0px -50px 0px",
     };
 
-    const observer = new IntersectionObserver((entries) => {
+    const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach((entry) => {
             if (entry.isIntersecting) {
                 entry.target.classList.add("reveal-visible");
+                observer.unobserve(entry.target); // Unobserve to animate only once
 
                 // Animate skill bars when visible
                 if (entry.target.classList.contains("skill-category")) {
                     const skillBars = entry.target.querySelectorAll(".skill-level");
                     skillBars.forEach((bar) => {
-                        const width = bar.style.width;
+                        const targetWidth = bar.parentElement.previousElementSibling.lastElementChild.textContent;
                         bar.style.width = "0%";
                         setTimeout(() => {
-                            bar.style.width = width;
-                        }, 300);
+                            bar.style.width = targetWidth; // set to text percentage
+                        }, 200);
                     });
                 }
             }
@@ -170,7 +171,7 @@ function initScrollAnimations() {
     }, observerOptions);
 
     elementsToReveal.forEach((el) => {
-        el.classList.add("reveal");
+        // Elements already have the .reveal class from HTML, just observe them
         observer.observe(el);
     });
 }
