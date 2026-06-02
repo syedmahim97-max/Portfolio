@@ -1,0 +1,89 @@
+/**
+ * Neon Glow Styles
+ * Domain: UI Component Styling
+ * Purpose: Provides reusable CSS classes for neon glowing buttons and cards combined with glass design.
+ */
+
+/* Neon Button Component */
+.neon-btn {
+    position: relative;
+    display: inline-block;
+    padding: 12px 30px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--primary) !important; /* Base color cyan */
+    background: transparent !important;
+    border: 2px solid var(--primary) !important;
+    border-radius: 8px !important;
+    box-shadow: 0 0 10px var(--primary-glow), inset 0 0 10px var(--primary-glow) !important;
+    text-shadow: 0 0 5px var(--primary), 0 0 10px var(--primary);
+    transition: all 0.3s ease-in-out !important;
+    overflow: hidden;
+    z-index: 1;
+}
+
+/* Neon Button Hover Effect */
+.neon-btn:hover {
+    background: var(--primary) !important;
+    color: var(--bg-dark) !important;
+    box-shadow: 0 0 20px var(--primary), 0 0 40px var(--primary) !important;
+    text-shadow: none;
+    transform: scale(1.05);
+}
+
+/* Secondary Neon color variation */
+.neon-btn.secondary {
+    color: var(--secondary) !important; /* Base color magenta */
+    border-color: var(--secondary) !important;
+    box-shadow: 0 0 10px var(--secondary-glow), inset 0 0 10px var(--secondary-glow) !important;
+    text-shadow: 0 0 5px var(--secondary), 0 0 10px var(--secondary);
+}
+
+.neon-btn.secondary:hover {
+    background: var(--secondary) !important;
+    color: var(--bg-dark) !important;
+    box-shadow: 0 0 20px var(--secondary), 0 0 40px var(--secondary) !important;
+}
+
+/* Neon Glass Card */
+.neon-glass-card {
+    background: rgba(10, 10, 15, 0.5); /* Glass base */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 2rem;
+    transition: all 0.3s ease-in-out;
+    position: relative;
+    z-index: 1;
+}
+
+/* Dynamic Interaction Glow (updated via JS) */
+.neon-glass-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(
+        circle 300px at var(--mouse-x, 50%) var(--mouse-y, 50%),
+        var(--primary-glow),
+        transparent 80%
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+    border-radius: 12px;
+}
+
+.neon-glass-card:hover {
+    border-color: var(--primary);
+    box-shadow: 0 0 20px var(--primary-glow);
+    transform: translateY(-5px);
+}
+
+.neon-glass-card:hover::before {
+    opacity: 1;
+}
