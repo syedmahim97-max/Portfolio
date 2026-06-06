@@ -1,0 +1,65 @@
+/**
+ * Animated Mesh Gradient Background
+ * Domain: Background Aesthetics
+ * Purpose: Renders a fixed layer of moving blurred colors to enhance glassmorphism.
+ */
+
+.mesh-background-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    overflow: hidden;
+    background-color: var(--bg-dark);
+}
+
+.mesh-blob {
+    position: absolute;
+    filter: blur(100px);
+    opacity: 0.5;
+    animation: mesh-movement 20s infinite alternate ease-in-out;
+}
+
+.mesh-blob.cyan {
+    top: -10%;
+    left: -10%;
+    width: 50vw;
+    height: 50vh;
+    background: var(--primary, #00ffff);
+    animation-delay: 0s;
+}
+
+.mesh-blob.magenta {
+    bottom: -10%;
+    right: -10%;
+    width: 60vw;
+    height: 60vh;
+    background: var(--secondary, #ff00ff);
+    animation-delay: -5s;
+}
+
+.mesh-blob.purple {
+    top: 40%;
+    left: 30%;
+    width: 40vw;
+    height: 40vh;
+    background: #8a2be2;
+    animation-delay: -10s;
+}
+
+@keyframes mesh-movement {
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+    33% {
+        transform: translate(10vw, -10vh) scale(1.1);
+    }
+    66% {
+        transform: translate(-10vw, 15vh) scale(0.9);
+    }
+    100% {
+        transform: translate(5vw, 5vh) scale(1.2);
+    }
+}
